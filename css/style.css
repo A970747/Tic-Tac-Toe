@@ -1,10 +1,14 @@
 :root {
   --blue: #6495ed;
   --white: #faf0e6;
+  --yellow: yellow;
+  --grey: grey;
 }
 
 h1 {
+  font-size: 12rem;
   margin: 0 auto;
+  text-align: center;
 }
 
 .hide {
@@ -25,11 +29,22 @@ h1 {
 }
 
 .gameBoard button {
-  background: var(--blue);
   border: none;
 }
 
 .gameBoard button:hover,
 .gameBoard button:focus {
   background-color: Red;
+}
+
+.blue {
+  background-color: var(--blue);
+}
+
+.yellow {
+  background-color: var(--yellow);
+}
+
+.unplayed {
+  background-color: var(--grey);
 }

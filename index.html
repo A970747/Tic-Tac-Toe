@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link type="image/png" href="images/favicon.png" rel="icon">
+  <link type="image/png" href="./assets/favicon.png" rel="icon">
   <link rel="stylesheet" type="text/css" href="./css/reset.css" media="all"/>
   <link rel="stylesheet" type="text/css" href="./css/style.css" media="all"/>
   <title>Tic-Tac-Toe</title>
@@ -29,7 +29,8 @@
       <button class='random' aria-label='randomize the starting player'>random</button>
       <button class='player2' aria-label='choose player 2 to start'></button>
     </div>
-    <div class="gameBoard wrapper">
+    <!-- todo add hide to gameBoard class, remove gameBoard class. -->
+    <div id="gameBoard" class="gameBoard wrapper">
       <button class='unplayed' name='top row left square' aria-label='' value='1' aria-pressed='false'></button>
       <button class='unplayed' name='top row center square' aria-label='' value='2' aria-pressed='false'></button>
       <button class='unplayed' name='top row right square' aria-label='' value='3' aria-pressed='false'></button>
@@ -39,6 +40,9 @@
       <button class='unplayed' name='bottom row left square' aria-label='' value='7' aria-pressed='false'></button>
       <button class='unplayed' name='bottom row center square' aria-label='' value='8' aria-pressed='false'></button>
       <button class='unplayed' name='bottom row right square' aria-label='' value='9' aria-pressed='false'></button>
+    </div>
+    <div>
+      <h3 class='messageToUser hide'></h3>
     </div>
     <div>
       <button class='undo'>undo last move</button>
