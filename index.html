@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="image/png" href="images/favicon.png" rel="icon">
+  <link rel="stylesheet" type="text/css" href="./css/reset.css" media="all"/>
+  <link rel="stylesheet" type="text/css" href="./css/style.css" media="all"/>
+  <title>Tic-Tac-Toe</title>
+</head>
+<body>
+  <header>
+    <h1>Tic-Tac-Toe</h1>
+  </header>
+  <main>
+    <div class='playerNames'>
+      <form action="">
+        <label for='player1' class='sr-only'>enter player 1 name:</label>
+        <input type="text" id='player1' maxlength="10" placeholder='player 1'>
+        <label for='player2' class='sr-only'>enter player 2 name:</label>
+        <input type="text" id='player2' maxlength="10" placeholder='player 2'>
+        <button type='submit' aria-label='Confirm names and choose which player starts'>go</button>
+      </form>
+      <button class='skip'>skip</button>
+    </div>
+    <div class='choosePlayer hide'>
+      <p>choose player to start</p>
+      <button class='player1' aria-label='choose player 1 to start'></button>
+      <button class='random' aria-label='randomize the starting player'>random</button>
+      <button class='player2' aria-label='choose player 2 to start'></button>
+    </div>
+    <div class="gameBoard wrapper">
+      <button class='unplayed' name='top row left square' aria-label='' value='1' aria-pressed='false'></button>
+      <button class='unplayed' name='top row center square' aria-label='' value='2' aria-pressed='false'></button>
+      <button class='unplayed' name='top row right square' aria-label='' value='3' aria-pressed='false'></button>
+      <button class='unplayed' name='middle row left square' aria-label='' value='4' aria-pressed='false'></button>
+      <button class='unplayed' name='middle row center square' aria-label='' value='5' aria-pressed='false'></button>
+      <button class='unplayed' name='middle row right square' aria-label='' value='6' aria-pressed='false'></button>
+      <button class='unplayed' name='bottom row left square' aria-label='' value='7' aria-pressed='false'></button>
+      <button class='unplayed' name='bottom row center square' aria-label='' value='8' aria-pressed='false'></button>
+      <button class='unplayed' name='bottom row right square' aria-label='' value='9' aria-pressed='false'></button>
+    </div>
+    <div>
+      <button class='undo'>undo last move</button>
+      <button class='playAgain'>play again</button>
+    </div>
+  </main>
+  <footer>
+
+  </footer>
+<script src="scripts/script.js"></script>
+</body>
+</html>

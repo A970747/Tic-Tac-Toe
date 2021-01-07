@@ -1,0 +1,35 @@
+:root {
+  --blue: #6495ed;
+  --white: #faf0e6;
+}
+
+h1 {
+  margin: 0 auto;
+}
+
+.hide {
+  display: none;
+}
+
+.wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.gameBoard {
+  display: grid;
+  padding: 25px;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  grid-template-rows: repeat(3, minmax(100px, 1fr));
+  grid-gap: 5px;
+}
+
+.gameBoard button {
+  background: var(--blue);
+  border: none;
+}
+
+.gameBoard button:hover,
+.gameBoard button:focus {
+  background-color: Red;
+}
