@@ -3,7 +3,6 @@
 let game = {};
 game.moves = [];
 game.activePlayer = '';
-game.haveWinner = false;
 game.player1 = {
   name: 'player1',
   color: 'blue',
@@ -31,38 +30,51 @@ const playerNames = $('.playerNames');
 const choosePlayer = $('.choosePlayer');
 const gameBoard = $('#gameBoard');
 const goButton = $('button[type="submit"]')
+const boardButtons = document.querySelectorAll('#gameBoard > button');
 
-$('.skip').addEventListener('click', setStartPlayerButtons)
-goButton.addEventListener('click', function hide(event) {
+$('.skip').addEventListener('click', setPlayerChoiceButtons)
+goButton.addEventListener('click', function setPlayerNames(event) {
   event.preventDefault();
   game.player1.name = $('#player1').value || 'player1'
   game.player2.name = $('#player2').value || 'player2'
-  setStartPlayerButtons();
+  setPlayerChoiceButtons();
 })
 
-gameBoard.addEventListener('click', function setSquareState({target}) {
-  console.log(target.value,target.getAttribute('class'));
+gameBoard.addEventListener('click', handlePlayerChoice);
+
+function handlePlayerChoice({target}) {
   if(target.getAttribute('class').includes('unplayed')) {
-    target.setAttribute('class', `${game[game.activePlayer].color}`);
-    target.setAttribute('aria-pressed', 'true');
-    target.setAttribute('aria-label', `${game[game.activePlayer].color}`);
-    game[game.activePlayer].squares.push(parseInt(target.value));
-    game[game.activePlayer].squares.sort();
-    console.log(game.activePlayer, game[game.activePlayer].squares);
-    game.moves.push([game[game.activePlayer].color, target.value]);
-    (checkIfPlayerWon())
-      ? endCurrentGame()
-      : game.activePlayer = (game.activePlayer == 'player1') ? 'player2' : 'player1';
+    playTurn(target);
   } else {
-    $('.messageToUser').innerHTML = `${target.name} already played for ${target.getAttribute('class')}`;
+    displayErrorMessage(target);
+  }
+}
+
+function playTurn(target) {
+  console.log(target.value,target.getAttribute('class'));
+  target.setAttribute('class', `${game[game.activePlayer].color}`);
+  target.setAttribute('aria-pressed', 'true');
+  target.setAttribute('aria-label', `${game[game.activePlayer].color}`);
+  game[game.activePlayer].squares.push(parseInt(target.value));
+  game[game.activePlayer].squares.sort();
+  console.log(game.activePlayer, game[game.activePlayer].squares);
+  game.moves.push([game[game.activePlayer].color, target.value]);
+  (checkIfPlayerWon())
+    ? endCurrentGame()
+    : game.activePlayer = (game.activePlayer == 'player1') ? 'player2' : 'player1';
+}
+
+function displayErrorMessage(target) {
+  if (target.name) {
+    $('.messageToUser').innerHTML = `${target.name} already played for ${target.getAttribute('class')}`
     $('.messageToUser').classList.toggle('hide');
     console.log($('.messageToUser').innerHTML);
     setTimeout(function() {
       $('.messageToUser').innerHTML = ``;
       $('.messageToUser').classList.toggle('hide');
     }, 5000)
-  }
-})
+  };
+}
 
 function checkIfPlayerWon() {
   for (const set of game.winningCombinations) {
@@ -78,17 +90,41 @@ function checkIfPlayerWon() {
       return true;
     }
   };
-
   return false;
 }
 
 function endCurrentGame() {
   console.log('game over');
-  const allBoardGameButtons = document.querySelectorAll('#gameBoard > button');
-  allBoardGameButtons.forEach((element) => element.disabled = true);
+  game.winner = game.activePlayer;
+  boardButtons.forEach((element) => element.disabled = true);
+  const div = document.createElement('div');
+  div.classList.add('winnerOverlay');
+  gameBoard.prepend(div);
+  gameBoard.removeEventListener('click', handlePlayerChoice);
+  const h3 = document.createElement('h3');
+  h3.classList.add('winnerMessage');
+  h3.innerHTML = `${game.winner} wins!`;
+  $('.winnerOverlay').append(h3)
+  const button = document.createElement('button');
+  button.classList.add('playAgain');
+  button.innerHTML = `play again`;
+  $('.winnerOverlay').append(button)
+  button.addEventListener('click', playAgain)
 }
 
-function setStartPlayerButtons() {
+function playAgain() {
+  game.player1.squares = [];
+  game.player2.squares = [];
+  $('.winnerOverlay').remove();
+  boardButtons.forEach((element) => {
+    element.setAttribute('aria-pressed', false);
+    element.setAttribute('class', 'unplayed');
+    element.disabled = false;
+  });
+  gameBoard.addEventListener('click', handlePlayerChoice);
+}
+
+function setPlayerChoiceButtons() {
   $('.player1').innerHTML = game.player1.name;
   $('.player2').innerHTML = game.player2.name;
   playerNames.classList.toggle('hide');
