@@ -5,9 +5,15 @@
   --grey: grey;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 h1 {
-  font-size: 12rem;
+  font-size: clamp(1rem, 6vh, 3rem);
   margin: 0 auto;
+  padding: 25px 0;
   text-align: center;
 }
 
@@ -18,6 +24,31 @@ h1 {
 .wrapper {
   max-width: 500px;
   margin: 0 auto;
+}
+
+.playerNames > form {
+  display: grid;
+  grid-template-columns: min-content min-content;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  grid-gap: 5px;
+}
+
+.playerNames > form > button[type="submit"] {
+  justify-self: end;
+}
+
+.playerNames > form > button {
+  justify-self: start;
+}
+
+.choosePlayer {
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.choosePlayer > p {
+  margin-bottom: 5px;
 }
 
 .gameBoard {
@@ -35,7 +66,7 @@ h1 {
 
 .gameBoard button:hover,
 .gameBoard button:focus {
-  background-color: Red;
+  border: 3px solid tomato;
 }
 
 .winnerOverlay {
@@ -71,4 +102,44 @@ h1 {
 
 .unplayed {
   background-color: var(--grey);
+}
+
+.undoDiv {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.messageDiv {
+  height: 40px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.messageToUser {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid orange;
+
+  text-transform: capitalize;
+  background-color: peachpuff;
+
+}
+
+.socialButtons {
+  position: absolute;
+  top: calc(100% - 100px);
+  left: 5px;
+}
+
+footer {
+  position: absolute;
+  top: calc(100% - 25px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25px;
+  background-color: black;
+  color: white;
 }

@@ -29,15 +29,19 @@ const $ = document.querySelector.bind(document);
 const playerNames = $('.playerNames');
 const choosePlayer = $('.choosePlayer');
 const gameBoard = $('#gameBoard');
-const goButton = $('button[type="submit"]')
+const goButton = $('button[type="submit"]');
+const skipButton = $('.skip');
+const undo = $('.undo');
 const boardButtons = document.querySelectorAll('#gameBoard > button');
+const choosePlayerButtons = document.querySelectorAll('.choosePlayer > button')
 
 goButton.addEventListener('click', setPlayerNames);
+skipButton.addEventListener('click', setPlayerChoiceButtons)
 gameBoard.addEventListener('click', handlePlayerChoice);
-choosePlayer.addEventListener('click', setStartingPlayer);
+choosePlayerButtons.forEach((element) => element.addEventListener('click', setStartingPlayer));
 
-$('.undo').addEventListener('click', undoLastTurn)
-$('.skip').addEventListener('click', setPlayerChoiceButtons)
+undo.addEventListener('click', undoLastTurn)
+
 
 function setStartingPlayer({target}) {
   console.log(target.getAttribute('class'));
@@ -54,6 +58,7 @@ function setStartingPlayer({target}) {
         : game.activePlayer = 'player2';
       break;
   };
+  undo.classList.toggle('hide');
   choosePlayer.classList.toggle('hide');
   gameBoard.classList.toggle('hide');
   gameBoard.classList.add('gameBoard');
@@ -69,6 +74,7 @@ function setPlayerNames(event) {
 function handlePlayerChoice({target}) {
   if(target.getAttribute('class').includes('unplayed')) {
     playTurn(target);
+    $('.messageDiv').classList.add('hide');
   } else {
     displayErrorMessage(target);
   }
@@ -84,15 +90,15 @@ function undoLastTurn() {
 }
 
 function playTurn(target) {
-  console.log(target.value,target.getAttribute('class'));
   target.setAttribute('class', `${game[game.activePlayer].color}`);
   target.setAttribute('aria-pressed', 'true');
   target.setAttribute('aria-label', `${game[game.activePlayer].color}`);
+
+  game.moves.push([game[game.activePlayer].color, target.value]);
   game[game.activePlayer].squares.push(parseInt(target.value));
   game[game.activePlayer].squares.sort();
-  console.log(game.activePlayer, game[game.activePlayer].squares);
-  game.moves.push([game[game.activePlayer].color, target.value]);
-  (checkIfPlayerWon())
+  
+  (checkIfPlayerWon() || game.moves.length == 9)
     ? endCurrentGame()
     : game.activePlayer = (game.activePlayer == 'player1') ? 'player2' : 'player1';
 }
@@ -100,12 +106,7 @@ function playTurn(target) {
 function displayErrorMessage(target) {
   if (target.name) {
     $('.messageToUser').innerHTML = `${target.name} already played for ${target.getAttribute('class')}`
-    $('.messageToUser').classList.toggle('hide');
-    console.log($('.messageToUser').innerHTML);
-    setTimeout(function() {
-      $('.messageToUser').innerHTML = ``;
-      $('.messageToUser').classList.toggle('hide');
-    }, 5000)
+    $('.messageDiv').classList.remove('hide');
   };
 }
 
@@ -120,6 +121,7 @@ function checkIfPlayerWon() {
     }, true)
     
     if (check) {
+      game.winner = game.activePlayer;
       return true;
     }
   };
@@ -127,15 +129,20 @@ function checkIfPlayerWon() {
 }
 
 function endCurrentGame() {
-  console.log('game over');
-  game.winner = game.activePlayer;
   boardButtons.forEach((element) => element.disabled = true);
   gameBoard.removeEventListener('click', handlePlayerChoice);
+  undo.disabled = true;
 
   createElementAndAppend('div', 'winnerOverlay', '', gameBoard);
   const winnerOverlay = $('.winnerOverlay')
 
-  createElementAndAppend('h3', 'winnerMessage', `${game.winner} wins!`, winnerOverlay)
+  if(game.moves.length == 9 && !game.winner) {
+    createElementAndAppend('h3', 'winnerMessage', `It's a tie!`, winnerOverlay)
+  } else {
+    game.winner = game.activePlayer;
+    createElementAndAppend('h3', 'winnerMessage', `${game.winner} wins!`, winnerOverlay)
+  }
+
   createElementAndAppend('button', 'playAgain', 'play again', winnerOverlay);
   $('.playAgain').addEventListener('click', playAgain)
 }
@@ -148,18 +155,26 @@ function createElementAndAppend(element, className, text = '', appendTo) {
 }
 
 function playAgain() {
+  game.activePlayer = (game.winner == 'player1') ? 'player2' : 'player1'
   game.player1.squares = [];
   game.player2.squares = [];
+  game.moves = [];
+  game.winner = '';
+
   $('.winnerOverlay').remove();
+
   boardButtons.forEach((element) => {
     element.setAttribute('aria-pressed', false);
     element.setAttribute('class', 'unplayed');
     element.disabled = false;
   });
+
   gameBoard.addEventListener('click', handlePlayerChoice);
+  undo.disabled = false;
 }
 
-function setPlayerChoiceButtons() {
+function setPlayerChoiceButtons(event) {
+  event.preventDefault();
   $('.player1').innerHTML = game.player1.name;
   $('.player2').innerHTML = game.player2.name;
   playerNames.classList.toggle('hide');
