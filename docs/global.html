@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Global</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Global</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2></h2>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="checkIfPlayerWon"><span class="type-signature"></span>checkIfPlayerWon<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Run through all the possible winning combinations to see if a single set of winning
+combinations is contained in the players squares array. If so, return true for the
+ternary operator in playTurn, and set game.winner to the current player.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="createElementAndAppend"><span class="type-signature"></span>createElementAndAppend<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Helper function used in endCurrentGame to create and append winner info.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line287">line 287</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="displayErrorMessage"><span class="type-signature"></span>displayErrorMessage<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Sets an error message to be displayed when a user selected a square that has already been played.
+Is removed when user clicks another square.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line303">line 303</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="endCurrentGame"><span class="type-signature"></span>endCurrentGame<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Set the game state when game is won. Disable event listeners on elements used for game.
+Creates a winner overlay and appends the winner, and a button to play again. If no
+game winner is assigned, when 9 moves have been played it announces a tie.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line173">line 173</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="generateChoice"><span class="type-signature"></span>generateChoice<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Function used in randomMode to generate random plays on the board. Each play removes
+an item from availableSquares so no move is repeated. Passes the chosen element to playTurn.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line256">line 256</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="handleChoice"><span class="type-signature"></span>handleChoice<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Checks if the selected target is &quot;unplayed&quot; and calls playTurn. If it has been played,
+calls displayErrorMessage.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line108">line 108</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="playAgain"><span class="type-signature"></span>playAgain<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Resets the game state to the beginning gamestate. Re-adds the appropriate event listeners
+to game elements.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line201">line 201</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="playTurn"><span class="type-signature"></span>playTurn<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Adds color to targetted square, sets aria-attributes for accessibility. Records
+the value and color in game.moves to keep a record. Adds the target value to the
+appropriate player squares field. Calls CheckIfPlayerWon to check for win, or
+if there have been 9 moves, game must be tied. If won or tied, call EndCurrentGame
+to set end game state. Otherwise, hand the turn over to the other player.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line124">line 124</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="setPlayerNames"><span class="type-signature"></span>setPlayerNames<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Takes value from buttons and assigns them to the game.playerX.name field. If no name provided,
+they use default values.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line51">line 51</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="setStartingPlayer"><span class="type-signature"></span>setStartingPlayer<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Sets the value of the buttons displayed that the user uses to select who plays first.
+Hides the playerName div and shows the choosePlayer div to reveal choice buttons.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line64">line 64</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="setStartingPlayer"><span class="type-signature"></span>setStartingPlayer<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Sets starting player based on user click. Sets game.mode to be displayed.
+Reveals undo button. Shows gameboard, hides starting player choices.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line79">line 79</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="switchMode"><span class="type-signature"></span>switchMode<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Updates the mode shown. Removes handlers for normal mode and adds event listeners
+for random mode. Switches the rules being shown.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line230">line 230</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="undoLastTurn"><span class="type-signature"></span>undoLastTurn<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Sets the state of the game to the previous state and resets the active player. If mode is random,
+re-add the unplayed square back to the list of possible squares.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="script.js.html">script.js</a>, <a href="script.js.html#line268">line 268</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#checkIfPlayerWon">checkIfPlayerWon</a></li><li><a href="global.html#createElementAndAppend">createElementAndAppend</a></li><li><a href="global.html#displayErrorMessage">displayErrorMessage</a></li><li><a href="global.html#endCurrentGame">endCurrentGame</a></li><li><a href="global.html#generateChoice">generateChoice</a></li><li><a href="global.html#handleChoice">handleChoice</a></li><li><a href="global.html#playAgain">playAgain</a></li><li><a href="global.html#playTurn">playTurn</a></li><li><a href="global.html#setPlayerNames">setPlayerNames</a></li><li><a href="global.html#setStartingPlayer">setStartingPlayer</a></li><li><a href="global.html#switchMode">switchMode</a></li><li><a href="global.html#undoLastTurn">undoLastTurn</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Fri Jan 08 2021 15:17:42 GMT-0500 (Eastern Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

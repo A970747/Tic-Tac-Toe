@@ -63,7 +63,7 @@ button {
   left: 5px;
 }
 
-.playerNames > form {
+.playerNames form {
   display: grid;
   grid-template-columns: repeat(2, minmax(75px, 150px));
   grid-template-rows: 1fr 1fr;
@@ -181,7 +181,7 @@ button {
   text-align: justify;
 }
 
-.rules > p {
+.rules p {
   font-size: clamp(1rem, 1vh + 1vw, 6rem);
 }
 
