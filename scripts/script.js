@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $('.winnerOverlay').remove();
 
     boardButtons.forEach((element) => {
+      element.setAttribute('aria-label', '');
       element.setAttribute('aria-pressed', false);
       element.setAttribute('class', 'unplayed');
       element.disabled = false;
