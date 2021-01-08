@@ -9,6 +9,7 @@
   <title>Tic-Tac-Toe</title>
 </head>
 <body>
+  <div id="fb-root"></div>
   <header>
     <h1>Tic-Tac-Toe</h1>
   </header>
@@ -30,7 +31,7 @@
       <button class='player2' aria-label='choose player 2 to start'></button>
     </div>
     <!-- todo add hide to gameBoard class, remove gameBoard class. -->
-    <div id="gameBoard" class="gameBoard wrapper">
+    <div id="gameBoard" class="hide wrapper">
       <button class='unplayed' name='top row left square' aria-label='' value='1' aria-pressed='false'></button>
       <button class='unplayed' name='top row center square' aria-label='' value='2' aria-pressed='false'></button>
       <button class='unplayed' name='top row right square' aria-label='' value='3' aria-pressed='false'></button>
@@ -47,10 +48,16 @@
     <div>
       <button class='undo'>undo last move</button>
     </div>
+    <div>
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="I just won a game of tic-tac-toe at: " data-url="https://www.mattjackson.dev/tictactoe" data-show-count="false">Tweet</a>
+      <div class="fb-share-button" data-href="https://www.mattjackson.dev/tictactoe" data-layout="button" data-text="I just won a game of tic-tac-toe at: " data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.mattjackson.dev%2Ftictactoe&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+    </div>
   </main>
   <footer>
-
   </footer>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="Q5U3cQiu"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
 <script src="scripts/script.js"></script>
 </body>
 </html>

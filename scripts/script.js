@@ -32,21 +32,54 @@ const gameBoard = $('#gameBoard');
 const goButton = $('button[type="submit"]')
 const boardButtons = document.querySelectorAll('#gameBoard > button');
 
+goButton.addEventListener('click', setPlayerNames);
+gameBoard.addEventListener('click', handlePlayerChoice);
+choosePlayer.addEventListener('click', setStartingPlayer);
+
+$('.undo').addEventListener('click', undoLastTurn)
 $('.skip').addEventListener('click', setPlayerChoiceButtons)
-goButton.addEventListener('click', function setPlayerNames(event) {
+
+function setStartingPlayer({target}) {
+  console.log(target.getAttribute('class'));
+  switch(target.getAttribute('class')) {
+    case 'player1':
+      game.activePlayer = 'player1';
+      break;
+    case 'player2':
+      game.activePlayer = 'player2';
+      break;
+    default:
+      (Math.random() > .5) 
+        ? game.activePlayer = 'player1'
+        : game.activePlayer = 'player2';
+      break;
+  };
+  choosePlayer.classList.toggle('hide');
+  gameBoard.classList.toggle('hide');
+  gameBoard.classList.add('gameBoard');
+}
+
+function setPlayerNames(event) {
   event.preventDefault();
   game.player1.name = $('#player1').value || 'player1'
   game.player2.name = $('#player2').value || 'player2'
   setPlayerChoiceButtons();
-})
-
-gameBoard.addEventListener('click', handlePlayerChoice);
+}
 
 function handlePlayerChoice({target}) {
   if(target.getAttribute('class').includes('unplayed')) {
     playTurn(target);
   } else {
     displayErrorMessage(target);
+  }
+}
+
+function undoLastTurn() {
+  if (game.moves.length > 0 ) {
+    const lastValue = game.moves.pop();
+    game.activePlayer = (game.activePlayer == 'player1') ? 'player2' : 'player1';
+    game[game.activePlayer].squares = game[game.activePlayer].squares.filter((number) => number !== parseInt(lastValue[1]))
+    $(`button[value='${lastValue[1]}']`).setAttribute('class', 'unplayed');
   }
 }
 
@@ -97,19 +130,21 @@ function endCurrentGame() {
   console.log('game over');
   game.winner = game.activePlayer;
   boardButtons.forEach((element) => element.disabled = true);
-  const div = document.createElement('div');
-  div.classList.add('winnerOverlay');
-  gameBoard.prepend(div);
   gameBoard.removeEventListener('click', handlePlayerChoice);
-  const h3 = document.createElement('h3');
-  h3.classList.add('winnerMessage');
-  h3.innerHTML = `${game.winner} wins!`;
-  $('.winnerOverlay').append(h3)
-  const button = document.createElement('button');
-  button.classList.add('playAgain');
-  button.innerHTML = `play again`;
-  $('.winnerOverlay').append(button)
-  button.addEventListener('click', playAgain)
+
+  createElementAndAppend('div', 'winnerOverlay', '', gameBoard);
+  const winnerOverlay = $('.winnerOverlay')
+
+  createElementAndAppend('h3', 'winnerMessage', `${game.winner} wins!`, winnerOverlay)
+  createElementAndAppend('button', 'playAgain', 'play again', winnerOverlay);
+  $('.playAgain').addEventListener('click', playAgain)
+}
+
+function createElementAndAppend(element, className, text = '', appendTo) {
+  const newElement = document.createElement(`${element}`);
+  newElement.classList.add(`${className}`);
+  newElement.innerHTML = `${text}`;
+  appendTo.append(newElement);
 }
 
 function playAgain() {
@@ -130,26 +165,6 @@ function setPlayerChoiceButtons() {
   playerNames.classList.toggle('hide');
   choosePlayer.classList.toggle('hide');
 }
-
-choosePlayer.addEventListener('click', function setActivePlayer({target}) {
-  console.log(target.getAttribute('class'));
-  switch(target.getAttribute('class')) {
-    case 'player1':
-      game.activePlayer = 'player1';
-      break;
-    case 'player2':
-      game.activePlayer = 'player2';
-      break;
-    default:
-      (Math.random() > .5) 
-        ? game.activePlayer = 'player1'
-        : game.activePlayer = 'player2';
-      break;
-  };
-  choosePlayer.classList.toggle('hide');
-  gameBoard.classList.toggle('hide');
-  gameBoard.classList.add('gameBoard');
-})
 
 document.addEventListener("DOMContentLoaded", function() {
 
