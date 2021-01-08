@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link type="image/png" href="./assets/favicon.png" rel="icon">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" type="text/css" href="./css/reset.css" media="all"/>
   <link rel="stylesheet" type="text/css" href="./css/style.css" media="all"/>
   <title>Tic-Tac-Toe</title>
@@ -28,15 +30,15 @@
         <input type="text" id='player1' maxlength="10" placeholder='player 1'>
         <label for='player2' class='sr-only'>enter player 2 name:</label>
         <input type="text" id='player2' maxlength="10" placeholder='player 2'>
-        <button type='submit' aria-label='Confirm names and choose which player starts'>go</button>
-        <button class='skip'>skip</button>
+        <button type='submit' class='standardButton' aria-label='Confirm names and choose which player starts'>go</button>
+        <button class='skip standardButton'>skip</button>
       </form>
     </div>
     <div class='choosePlayer hide'>
       <p>choose player to start</p>
-      <button class='player1' aria-label='choose player 1 to start'></button>
-      <button class='random' aria-label='randomize the starting player'>random</button>
-      <button class='player2' aria-label='choose player 2 to start'></button>
+      <button class='player1 standardButton' aria-label='choose player 1 to start'></button>
+      <button class='random standardButton' aria-label='randomize the starting player'>random</button>
+      <button class='player2 standardButton' aria-label='choose player 2 to start'></button>
     </div>
     <div id="gameBoard" class="hide wrapper">
       <button class='unplayed' name='top row left square' aria-label='' value='1' aria-pressed='false'></button>
@@ -50,10 +52,16 @@
       <button class='unplayed' name='bottom row right square' aria-label='' value='9' aria-pressed='false'></button>
     </div>
     <div class='messageDiv hide'>
-      <h3 class='messageToUser hide'></h3>
+      <h3 class='messageToUser'></h3>
     </div>
-    <div class='undoDiv'>
-      <button class='undo hide'>undo last move</button>
+    <div class='undoDiv hide wrapper'>
+      <button class='undo standardButton'>undo last</button>
+      <button class='changeMode standardButton' aria-label='change between normal and random mode'>change mode</button>
+      <p class='mode'></p>
+    </div>
+    <div class="wrapper rules">
+      <p class='normalRules'>After selecting the starting player (or selecting random), players will alternate turns selecting squares until they have 3 squares in a row. If you tie, play again!</p>
+      <p class='randomRules hide'>In random mode, pressing any square will randomly play a tile on the board. Colors will alternate on tile press. Switch to normal mode at any time to continue playing normally. </p>
     </div>
   </main>
   <footer>
