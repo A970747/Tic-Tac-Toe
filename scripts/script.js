@@ -276,7 +276,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const lastValue = game.moves.pop();
       game.activePlayer = (game.activePlayer == 'player1') ? 'player2' : 'player1';
       game[game.activePlayer].squares = game[game.activePlayer].squares.filter((number) => number !== parseInt(lastValue[1]));
-      $(`button[value='${lastValue[1]}']`).setAttribute('class', 'unplayed');
+      
+      const squareToReset = $(`button[value='${lastValue[1]}']`);
+      squareToReset.setAttribute('class', 'unplayed');
+      squareToReset.setAttribute('aria-label', '');
+      squareToReset.setAttribute('aria-pressed', false);
 
       if(game.mode == 'random') {
         game.availableSquares.push(parseInt(lastValue[1]));
